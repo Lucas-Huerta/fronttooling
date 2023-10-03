@@ -1,0 +1,22 @@
+{
+  "name": "boilerplate-front",
+  "version": "1.0.0",
+  "description": "boilerplate front",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "prettier": "npx prettier --write '**/*.js'",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "Lucas",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^4.4.9"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3"
+  }
+}
