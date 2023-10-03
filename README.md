@@ -1,10 +1,10 @@
 # Boilerplate Front-end tooling 🤓
 
-Un projet front-end créé avec [Vite](https://vitejs.dev/){:target="\_blank"} dans le cadre du cours de Front-end Tooling.
+Un projet front-end créé avec [Vite](https://vitejs.dev/) dans le cadre du cours de Front-end Tooling.
 
 ## Aperçu 🕶️
 
-Ce projet est un boilerplate (modèle de démarrage) pour les projets front-end utilisant [Vite](https://vitejs.dev/){:target="\_blank"}, une technologie de développement rapide pour les applications web. Il est conçu pour vous permettre de démarrer rapidement avec la configuration minimale et les outils nécessaires pour développer des applications web modernes.
+Ce projet est un boilerplate (modèle de démarrage) pour les projets front-end utilisant [Vite](https://vitejs.dev/), une technologie de développement rapide pour les applications web. Il est conçu pour vous permettre de démarrer rapidement avec la configuration minimale et les outils nécessaires pour développer des applications web modernes.
 
 ## Installation 🗂️
 
@@ -32,10 +32,10 @@ yarn build
 
 Ce modèle de démarrage inclut les technologies suivantes :
 
-- [Storybook](https://storybook.js.org/){:target="\_blank"}
-- Un système de test avec [Jest](https://jestjs.io/fr/){:target="\_blank"}
+- [Storybook](https://storybook.js.org/)
+- Un système de test avec [Jest](https://jestjs.io/fr/)
 - Hooks personnalisés dans src/hooks
-- Un [Linter](https://eslint.org/){:target="\_blank"}
+- Un [Linter](https://eslint.org/)
 - Un .env et .env-example
 
 ## Commandes disponibles ⌨️
