@@ -1,15 +1,21 @@
 <script setup>
 import cardsHook from "@/hooks/cardsHook";
+import typesHook from "@/hooks/typesHooks";
 import { ref } from "vue";
+import Card from "@/components/Card.vue";
 
 const tabCard = ref([]);
+const tabCardFiltre = ref([]);
+const tabTypes = ref([]);
 const isLoading = ref(true);
+const oneType = ref();
 
 // fetch des données
 const fetchCards = async () => {
     try {
         const response = await cardsHook.findAllCards();
         tabCard.value = response.data;
+        console.log(tabCard.value);
     } catch (error) {
         console.log(error);
     }
@@ -17,7 +23,36 @@ const fetchCards = async () => {
         isLoading.value = false;
     }
 };
+
+const fetchTypes = async () => {
+    try {
+        const response = await typesHook.findAllTypes();
+        tabTypes.value = response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 fetchCards();
+fetchTypes();
+
+const onClickType = (type) => {
+    const tabNewCard = ref([]);
+    tabCardFiltre.value = [];
+    if (oneType.value === type) {
+        oneType.value = "";
+        return;
+    } else {
+        oneType.value = type;
+        for (let i = 0; i < tabCard.value.length; i++) {
+            const element = tabCard.value[i];
+            if (element.types.includes(type)) {
+                tabNewCard.value.push(element);
+            }
+        }
+        tabCardFiltre.value = tabNewCard.value;
+    }
+}
+
 </script>
 
 <template>
@@ -25,11 +60,22 @@ fetchCards();
         Pokedex
     </h1>
     <div class="containerPoke">
-        <div v-if="isLoading" class="loader"></div>
+        <div class="columnLoader" v-if="isLoading">
+            <h3>Chargement de la page</h3>
+            <div class="loader"></div>
+        </div>
 
-        <div class="rowCardPoke" v-else v-for="(card, index) in tabCard" :key="index">
-            <h3>{{ card.name }}</h3>
-            <img :src="card.images.large">
+        <div v-else>
+            <div class="rowTypes">
+                <p v-for="(type, index) in tabTypes" :key="index" @click="onClickType(type)"
+                    :class="{ active: oneType === type }" class="type">
+                    {{ type }}
+                </p>
+            </div>
+            <div class="rowCards">
+                <Card v-if="tabCardFiltre.length < 1" v-for="(card, index) in tabCard" :card="card" :key="index" />
+                <Card v-else v-for="(card, i) in tabCardFiltre" :card="card" :key="i" />
+            </div>
         </div>
     </div>
 </template>
@@ -57,22 +103,49 @@ fetchCards();
 
 .containerPoke {
     width: 100%;
+}
+
+.columnLoader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rowTypes {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    margin: auto;
+}
+
+.type {
+    width: 10%;
+    text-align: center;
+    background-color: #3498db;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    border: 1px solid #3498db;
+}
+
+.type:hover {
+    background-color: white;
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+.active {
+    background-color: white;
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+.rowCards {
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 5vw;
-}
-
-.rowCardPoke {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.rowCardPoke img {
-    width: 40%;
-    height: auto;
 }
 </style>
