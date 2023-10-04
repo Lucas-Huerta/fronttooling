@@ -12,8 +12,7 @@ export default {
 		preprocessorOptions: {
 			scss: {
 				implementation: require("sass"),
-				// additionalData: "@import \"@/styles/index.scss\";"
 			}
 		}
-	}
+	},
 };

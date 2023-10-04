@@ -5,7 +5,9 @@ export const exampleFindAll = async (
 ): Promise<Object> => {
 
   // création de l'url => http://localhost:5173/example
-  const url = `${process.env.PROJECT_URL}example`;
+  // const url = `${process.env.API_ENDPOINT}`;
+  const url = "http://localhost:5173/example";
+
 
   // création des headers
   const myHeaders = new Headers();
