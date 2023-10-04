@@ -1,4 +1,4 @@
-import { fetchWrapper } from "../utils/fetchWrapper";
+import { fetchWrapper } from "@/utils/fetchWrapper";
 
 export const exampleFindAll = async (
   body: Object

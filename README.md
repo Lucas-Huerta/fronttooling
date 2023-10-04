@@ -32,11 +32,14 @@ yarn build
 
 Ce modèle de démarrage inclut les technologies suivantes :
 
+- [VueJs 3](https://vuejs.org/)
 - [Storybook](https://storybook.js.org/)
 - Un système de test avec [Jest](https://jestjs.io/fr/)
 - Hooks personnalisés dans src/hooks
 - Un [Linter](https://eslint.org/)
+- Husky pour les gits hooks
 - Un .env et .env-example
+- Les imports absolus en utilisant @ comme préfix
 
 ## Commandes disponibles ⌨️
 
