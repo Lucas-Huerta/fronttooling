@@ -7,5 +7,13 @@ export default {
 		alias: {
 			"@": path.resolve(__dirname, "src")
 		}
+	}, 
+	css: {
+		preprocessorOptions: {
+			scss: {
+				implementation: require("sass"),
+				// additionalData: "@import \"@/styles/index.scss\";"
+			}
+		}
 	}
 };
