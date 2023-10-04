@@ -38,6 +38,7 @@ Ce modèle de démarrage inclut les technologies suivantes :
 - Hooks personnalisés dans src/hooks
 - Un [Linter](https://eslint.org/)
 - Husky pour les gits hooks
+- Des styles pré-configurés dans le dossier src/styles
 - Un .env et .env-example
 - Les imports absolus en utilisant @ comme préfix
 
