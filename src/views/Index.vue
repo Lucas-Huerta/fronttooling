@@ -15,7 +15,6 @@ const fetchCards = async () => {
     try {
         const response = await cardsHook.findAllCards();
         tabCard.value = response.data;
-        console.log(tabCard.value);
     } catch (error) {
         console.log(error);
     }
@@ -127,6 +126,7 @@ const onClickType = (type) => {
     color: white;
     padding: 10px;
     border: 1px solid #3498db;
+    font-family: "Inter";
 }
 
 .type:hover {

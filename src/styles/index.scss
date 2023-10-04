@@ -1,4 +1,5 @@
 @import "./vars/spacing.scss";
+@import "./fonts/font.scss";
 
 h1, .h1 {
   font-size: $--6m;
@@ -6,6 +7,7 @@ h1, .h1 {
   letter-spacing: 2px;
   line-height: normal;
   text-align: center;
+  font-family: "Pokemon";
 }
 
 h2, .h2 {
@@ -13,6 +15,8 @@ h2, .h2 {
   font-style: normal;
   line-height: normal;
   letter-spacing: 2px;
+  font-family: "Inter";
+  font-weight: 600;
 }
 
 h3, .h3 {
@@ -20,6 +24,8 @@ h3, .h3 {
   font-style: normal;
   line-height: normal;
   letter-spacing: 1px;
+  font-family: "Inter";
+  font-weight: 700;
 }
 
 h4, .h4 {
@@ -27,6 +33,8 @@ h4, .h4 {
   font-style: normal;
   line-height: normal;
   letter-spacing: 1px;
+  font-family: "Inter";
+  font-weight: 200;
 }
 
 h5, .h5 {
