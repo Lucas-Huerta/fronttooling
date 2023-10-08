@@ -1,15 +1,11 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({
     card: Object
 })
 
 const cardRef = ref(null);
-
-// onMounted(() => {
-//     console.log(cardRef.value);
-// })
 
 const onMoveCard = (event) => {
     const card = cardRef.value;
@@ -27,20 +23,32 @@ const onLowerCard = () => {
 
 <template>
     <div class="rowCardPoke">
-        <h3>{{ card.name }}</h3>
+        <h3 style="text-align: center; margin-bottom: 2%;">{{ card.name }}</h3>
+        <div class="rowTypes">
+            <p>Type: </p>
+            <p v-for="type in card.types" :key="type">
+                {{ type }}
+            </p>
+        </div>
         <img @mousemove="onMoveCard" @mouseleave="onLowerCard" ref="cardRef" loading="lazy" :src="card.images.large">
     </div>
 </template>
 
 <style scoped>
 .rowCardPoke {
-    position: relative;
     width: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease;
+}
+
+.rowTypes {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    font-family: "Inter";
 }
 
 .rowCardPoke img {
@@ -54,8 +62,7 @@ const onLowerCard = () => {
     position: absolute;
     z-index: 10;
     transition: width 0.3s ease;
-    width: 100%;
-    transform: rotateY(10deg);
+    width: 20%;
     box-shadow: 0 100px 130px rgba(0, 0, 0, 0.2);
 }
 </style>

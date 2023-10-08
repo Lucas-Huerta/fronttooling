@@ -1,6 +1,7 @@
 <script setup>
 import cardsHook from "@/hooks/cardsHook";
 import typesHook from "@/hooks/typesHooks";
+import setHook from "@/hooks/setHook";
 import { ref } from "vue";
 import Card from "@/components/Card.vue";
 
@@ -8,18 +9,30 @@ const tabCard = ref([]);
 const tabCardFiltre = ref([]);
 const tabTypes = ref([]);
 const isLoading = ref(true);
+const tabSet = ref([]);
 const oneType = ref();
+
+const fetchSet = async () => {
+    try {
+        const response = await setHook.findAllSets();
+        tabSet.value = response.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 // fetch des données
 const fetchCards = async () => {
     try {
         const response = await cardsHook.findAllCards();
         tabCard.value = response.data;
+        await fetchSet();
     } catch (error) {
         console.log(error);
     }
     finally {
         isLoading.value = false;
+        console.log("card", tabCard.value);
     }
 };
 
@@ -31,8 +44,6 @@ const fetchTypes = async () => {
         console.log(error);
     }
 };
-fetchCards();
-fetchTypes();
 
 const onClickType = (type) => {
     const tabNewCard = ref([]);
@@ -52,24 +63,31 @@ const onClickType = (type) => {
     }
 }
 
+fetchCards();
+fetchTypes();
 </script>
 
 <template>
     <h1>
-        Pokedex
+        You're best Pokedex
     </h1>
     <div class="containerPoke">
         <div class="columnLoader" v-if="isLoading">
-            <h3>Chargement de la page</h3>
+            <h3>Loading</h3>
             <div class="loader"></div>
         </div>
 
         <div v-else>
             <div class="rowTypes">
-                <p v-for="(type, index) in tabTypes" :key="index" @click="onClickType(type)"
-                    :class="{ active: oneType === type }" class="type">
-                    {{ type }}
+                <p class="chooseType">
+                    Choose your type :
                 </p>
+                <div class="allTypes">
+                    <p v-for="(type, index) in tabTypes" :key="index" @click="onClickType(type)"
+                        :class="{ active: oneType === type }" class="type">
+                        {{ type }}
+                    </p>
+                </div>
             </div>
             <div class="rowCards">
                 <Card v-if="tabCardFiltre.length < 1" v-for="(card, index) in tabCard" :card="card" :key="index" />
@@ -114,8 +132,19 @@ const onClickType = (type) => {
     width: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.chooseType {
+    font-family: "Inter";
+}
+
+.allTypes {
+    display: flex;
+    flex-direction: row;
     gap: 2vw;
     margin: auto;
+    overflow-x: scroll;
 }
 
 .type {
@@ -127,6 +156,7 @@ const onClickType = (type) => {
     padding: 10px;
     border: 1px solid #3498db;
     font-family: "Inter";
+    transition: all 0.3s ease;
 }
 
 .type:hover {
